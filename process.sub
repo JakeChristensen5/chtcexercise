@@ -1,0 +1,10 @@
+universe = vanilla
+executable = process.sh
+arguments = chunk0$(Process).txt
+output = output_$(Process).txt
+error = error_$(Process).txt
+log = process.log
+transfer_input_files = chunk0$(Process).txt
+request_disk = 500000
+
+queue 5
