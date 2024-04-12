@@ -1,18 +1,18 @@
-# Define the pre-processing step
+#define the pre-processing step
 JOB PRE pre_process.sub
 SCRIPT POST PRE process.sh
 
-# Define the processing jobs for each chunk
+#define the processing jobs for each chunk
 JOB PROC1 process.sub
 JOB PROC2 process.sub
 JOB PROC3 process.sub
 JOB PROC4 process.sub
 JOB PROC5 process.sub
 
-# Define the post-processing step
+#define the post-processing step
 JOB POST post_process.sub
 SCRIPT POST POST post_process.sh
 
-# Define dependencies
+#define dependencies
 PARENT PRE CHILD PROC1 PROC2 PROC3 PROC4 PROC5
 PARENT PROC1 PROC2 PROC3 PROC4 PROC5 CHILD POST
