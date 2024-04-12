@@ -1,18 +1,25 @@
-#define the pre-processing step
+#define the PRE job to prepare the data
 JOB PRE pre_process.sub
-SCRIPT POST PRE process.sh
 
-#define the processing jobs for each chunk
+#define the PROCESS jobs to process the chunks in parallel
+JOB PROC0 process.sub
 JOB PROC1 process.sub
 JOB PROC2 process.sub
 JOB PROC3 process.sub
 JOB PROC4 process.sub
-JOB PROC5 process.sub
 
-#define the post-processing step
+#define the POST job to aggregate the results
 JOB POST post_process.sub
-SCRIPT POST POST post_process.sh
 
-#define dependencies
-PARENT PRE CHILD PROC1 PROC2 PROC3 PROC4 PROC5
-PARENT PROC1 PROC2 PROC3 PROC4 PROC5 CHILD POST
+#specify variables for the chunk files for each PROCESS job
+VARS PROC0 chunk="00"
+VARS PROC1 chunk="01"
+VARS PROC2 chunk="02"
+VARS PROC3 chunk="03"
+VARS PROC4 chunk="04"
+
+#set the PRE job to be completed before the PROCESS jobs
+PARENT PRE CHILD PROC0 PROC1 PROC2 PROC3 PROC4
+
+#set all PROCESS jobs to be completed before the POST job
+PARENT PROC0 PROC1 PROC2 PROC3 PROC4 CHILD POST
