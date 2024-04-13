@@ -1,0 +1,27 @@
+# Define the PRE step
+JOB PRE pre_process.sub
+SCRIPT PRE PRE pre_process.sh
+
+# Define the parallel PROCESS steps
+JOB PROC0 process.sub
+SCRIPT PRE PROC0 process.sh chunk00.txt
+
+JOB PROC1 process.sub
+SCRIPT PRE PROC1 process.sh chunk01.txt
+
+JOB PROC2 process.sub
+SCRIPT PRE PROC2 process.sh chunk02.txt
+
+JOB PROC3 process.sub
+SCRIPT PRE PROC3 process.sh chunk03.txt
+
+JOB PROC4 process.sub
+SCRIPT PRE PROC4 process.sh chunk04.txt
+
+# Define the POST step
+JOB POST post_process.sub
+SCRIPT POST POST post_process.sh
+
+# Define the dependencies
+PARENT PRE CHILD PROC0 PROC1 PROC2 PROC3 PROC4
+PARENT PROC0 PROC1 PROC2 PROC3 PROC4 CHILD POST

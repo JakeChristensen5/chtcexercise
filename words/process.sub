@@ -1,0 +1,8 @@
+universe = vanilla
+executable = process.sh
+log = process.log
+error = process_$(Process).err
+output = process_$(Process).out
+arguments = chunk$(Process).txt
+request_disk = 500MB
+queue

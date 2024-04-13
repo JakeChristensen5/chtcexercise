@@ -1,0 +1,7 @@
+universe = vanilla
+executable = pre_process.sh
+log = pre_process.log
+error = pre_process.err
+output = pre_process.out
+request_disk = 500MB
+queue

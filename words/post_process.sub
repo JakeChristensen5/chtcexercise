@@ -1,0 +1,7 @@
+universe = vanilla
+executable = post_process.sh
+log = post_process.log
+error = post_process.err
+output = post_process.out
+request_disk = 500MB
+queue
